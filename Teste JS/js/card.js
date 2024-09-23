@@ -91,7 +91,7 @@ canvas.addEventListener("keydown", (event) => {
         // Desabilita todas as cartas
         if (cards.length > 0) {
             for (let card of cards) {
-                ard.draggable = false;
+                card.draggable = false;
             }
         }
         
