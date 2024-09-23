@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste JS</title>
+    
+    <!-- STYLE -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <canvas id="gameCanvas" width="1600" height="900"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+    </script>
+
+    <p>Pressione espaço para adicionar uma carta</p>
+
+    <!-- SCRIPT -->
+    <script src="js/slot.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/gameScript.js"></script>
+    
+</body>
+</html>
