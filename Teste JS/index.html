@@ -5,24 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste JS</title>
     
+    <!-- PRELOAD -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+
     <!-- STYLE -->
     <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-    <canvas id="gameCanvas" width="1600" height="900"></canvas>
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-    </script>
-
-    <p>Pressione espaço para adicionar uma carta</p>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <img src="lib/carta.png" draggable="true" ondragstart="drag(event)" id="drag1" width="200" height="280">
+    </div>
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
     <!-- SCRIPT -->
-    <script src="js/slot.js"></script>
-    <script src="js/card.js"></script>
-    <script src="js/gameScript.js"></script>
+    <script src="dragndrop.js"></script>
     
 </body>
 </html>
