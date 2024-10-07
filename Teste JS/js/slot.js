@@ -3,6 +3,12 @@ const slots = [];
 const slotWidth = 100;
 const slotHeight = 150;
 
+// Palavras dos slots
+const slotWords = [
+    "BARALHO", "LUVA", "CARAMBOLA", "ALMOFADA", "CAMALEÃO", "TUCANO", "ESCORPIÃO", "JIBOIA", "SOLDADO", 
+    "SIRIEMA", "SAPATO", "LIMÃO", "CASA", "SACOLA", "REPOLHO", "FIVELA", "GIRASSOL", "GALINHA"
+];
+
 // Criar slot
 function createSlot(x, y) {
     return {
@@ -10,6 +16,7 @@ function createSlot(x, y) {
         y: y,
         width: slotWidth,
         height: slotHeight,
+        word: ""
     };
 }
 
@@ -31,13 +38,21 @@ function drawSlot(slot) {
 // EventListener para soltar o mouse
 canvas.addEventListener('mouseup', () => {
     if (isDragging && draggableCard) {
-        if (isColliding(draggableCard.x, draggableCard))
-        draggableCard.drag = false;
-        isDragging = false;
-        draggableCard.rot = Math.random() * 12 - 6;
-        draggableCard = null;
+        for (let slot of slots) {
+            if (checkCard(draggableCard, slot) && draggableCard.word == slot.word) {
+                draggableCard.draggable = false;
+            }
+        }
     }
 });
+
+function checkCard(card, slot) {
+    let offset = 10;
+    return  card.x < slot.x + offset &&
+            card.x + offset > slot.x &&
+            card.y < slot.y + offset &&
+            card.y + offset > slot.y;
+}
 
 // Cria um slot no centro
 const newSlot = createSlot(

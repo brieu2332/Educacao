@@ -3,6 +3,14 @@ const cardWidth = 100;
 const cardHeight = 150;
 let isDragging = false;
 
+// Palavras das cartas azuis
+const cardWords = [
+    "EMA", "MÃO", "BOIA", "PIÃO", "DADO", "PATO", "ASA", "LINHA", "COLA",
+    "VELA", "OLHO", "SOL", "FADA", "ALHO", "BOLA", "LEÃO", "CANO", "UVA"
+];
+
+// cardWords = shuffle(cardWords);
+
 // Criar carta
 function createCard(x, y) {
     return {
@@ -14,16 +22,19 @@ function createCard(x, y) {
         offset_y: 0,
         draggable: true,
         drag: false,
-        rot: Math.random() * 8 - 4
+        rot: Math.random() * 8 - 4,
+        word: ""
     };
 }
 
 // EventListener para o movimento do mouse
 canvas.addEventListener('mousemove', (e) => {
+    // Pega as coordenadas do mouse
     const rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
 
+    // Se esta arrastando e existe uma carta arrastável
     if (isDragging && draggableCard) {
         draggableCard.x = mouseX + draggableCard.offset_x;
         draggableCard.y = mouseY + draggableCard.offset_y;
@@ -33,6 +44,7 @@ canvas.addEventListener('mousemove', (e) => {
 
 // EventListener para o click do mouse
 canvas.addEventListener('mousedown', () => {
+    // Checa cada carta atrás de uma arrastável
     for (let card of cards) {
         if (isColliding(mouseX, mouseY, card) && card.draggable) {
             isDragging = true;
@@ -56,26 +68,25 @@ canvas.addEventListener('mouseup', () => {
     }
 });
 
-// Checagem de colisão com a carta
-function isColliding(x, y, card) {
-    return x > card.x && x < card.x + card.width &&
-           y > card.y && y < card.y + card.height;
-}
-
 // Desenhar carta
 function drawCard(card) {
+    // Salva o contexto atual (padrão)
     ctx.save();
     
     ctx.translate(card.x + card.width / 2, card.y + card.height / 2);   // Seta origem para o centro da carta
-    ctx.rotate(card.rot * Math.PI / 180);   // Rotaciona a partir da origem
-    ctx.translate(-card.width / 2, -card.height / 2);   
+    ctx.rotate(card.rot * Math.PI / 180);                               // Rotaciona a partir da origem
+    ctx.translate(-card.width / 2, -card.height / 2);                   // Seta origem cara o canto superior esquerdo
 
+    // Desenha sombra e carta a partir da origem (card.x, card.y)
     ctx.fillStyle = "rgb(0, 0, 0, 0.5)";
     ctx.fillRect(0, 2, card.width, card.height);
 
     ctx.fillStyle = (card.draggable) ? "rgb(60, 175, 157)" : "rgb(29, 146, 126)";
     ctx.fillRect(0, 0, card.width, card.height);
 
+    // Retorna ao contexto padrão:
+    // Devolve o translate para o canto superior esquerdo do canvas, define a rotação de volta para 0, 
+    // restaura as valores de cor do fillStyle, etc.
     ctx.restore();
 }
 
@@ -90,9 +101,7 @@ canvas.addEventListener("keydown", (event) => {
 
         // Desabilita todas as cartas
         if (cards.length > 0) {
-            for (let card of cards) {
-                card.draggable = false;
-            }
+            cards[cards.length -1].draggable = false;
         }
         
         // Cria uma carta habilitada
