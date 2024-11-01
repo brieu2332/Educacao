@@ -7,7 +7,6 @@
     
     <!-- PRELOAD -->
     <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="script.js" as="script">
 
     <!-- STYLE -->
     <link rel="stylesheet" href="style.css">
@@ -16,16 +15,12 @@
 <body>
 
     <canvas id="gameCanvas" width="1600" height="900"></canvas>
-    <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-    </script>
 
     <p>Pressione espaço para adicionar uma carta</p>
 
     <!-- SCRIPT -->
-    <script src="js/slot.js"></script>
-    <script src="js/card.js"></script>
+     <script src="js/canvas.js"></script>
+    <script src="js/entities.js"></script>
     <script src="js/gameScript.js"></script>
     
 </body>

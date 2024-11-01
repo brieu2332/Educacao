@@ -1,62 +1,80 @@
-// Atualização do canvas cada frame
-function update() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+let currentSlots = [];
+let currentCards = [];
+let lastTime = 0;
 
-    // Desenha todos os slots
-    for (let slot of slots) {
-        drawSlot(slot);
-    }
+function update(currentTime) {
+    // Calcula o tempo decorrido em segundos
+    const deltaTime = (currentTime - lastTime) / 1000;
+    lastTime = currentTime;
 
-    // Desenha todas as cartas
-    for (let card of cards) {
-        drawCard(card);
-    }
+    draw();
 
-    // Espera o próximo frame para repetir o processo
+    slotsUpdate(deltaTime);
+    
+    // Solicita o próximo frame para continuar a atualização
     requestAnimationFrame(update);
 }
 
-// Checagem de colisão
-function isColliding(x, y, obj = null) {
-    // Caso (x, y, obj2) - Colisão de ponto com objeto
-    if (obj != null) {
-        return x > obj.x && x < obj.x + obj.width &&
-               y > obj.y && y < obj.y + obj.height;
-               
-    // Caso (obj1, obj2) - Colisão de dois objetos
-    } else {
-        let obj1 = x;
-        let obj2 = y;
 
-        return obj1.x < obj2.x + obj2.width &&
-               obj1.x + obj1.width > obj2.x &&
-               obj1.y < obj2.y + obj2.height &&
-               obj1.y + obj1.height > obj2.y;
+// Sequência de início do jogo
+function gameStartSequence() {
+    
+    pickCards();
+    
+    let newSlot = createSlot(
+        (canvas.width / 2) - (slotWidth / 2),
+        (canvas.height / 2) - (slotHeight / 2)
+    )
+    newSlot.word = currentSlots[0];
+    slots.push(newSlot);
+
+    newSlot = createSlot(
+        (canvas.width / 2) + slotWidth ,
+        (canvas.height / 2) - (slotHeight / 2)
+    )
+    newSlot.word = currentSlots[1];
+    slots.push(newSlot);
+
+    for (let i = currentCards.length - 1; i >= 0; i--) {
+        let newCard = createCard(
+            (canvas.width / 2) - (cardWidth / 2),
+            canvas.height - (cardHeight * 3 / 2)
+        );
+        newCard.word = currentCards[i];
+        cards.push(newCard);
+
+        // let newSlot = createSlot(
+        //     (canvas.width / 2) - (slotWidth / 2) ,
+        //     (canvas.height / 2) - (slotHeight / 2)
+        // )
+        // newSlot.word = currentSlots[i];
+        // slots.push(newSlot);
     }
-}
 
-// Randomizar array
-function shuffle(array) {
-    let currentIndex = array.length;
-    let aux;
+    // Inicializa o loop de atualização do canvas
+    update();
 
-    // Loop para embaralhar o array
-    while (currentIndex > 0) {
-        // Escolhe um índice aleatório entre 0 e currentIndex - 1
-        let randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+};
 
-        aux = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = aux;
-    }
+// // Randomizar array
+// function shuffle(array) {
+//     let i = array.length;
+//     let aux;
 
-    return array;
-}
+//     // Loop para embaralhar o array
+//     while (i > 0) {
+//         let randIndex = Math.random() * 8;
+//         aux = currentCards[i];
+//         currentCards[i] = currentCards[randIndex]
+//         currentCards[randIndex] = aux;
+//         i--;
+//     }
+//     return array;
+// };
 
 // Permite que o canvas receba foco e possa capturar eventos de teclado
 canvas.tabIndex = 1000; 
 canvas.focus();
 
-// Inicializa o loop
-update();
+// Sequência de início
+gameStartSequence();
