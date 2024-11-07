@@ -1,0 +1,41 @@
+body {
+    background-color: #f0c674; /* Cor de fundo mais suave */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fonte infantil */
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+canvas {
+    display: block;
+    margin: 20px auto;
+    border: 3px solid #333;
+    background-color: #fff;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo básico para links de botão */
+.button {
+    display: inline-block;
+    margin: 10px 20px;
+    padding: 15px 30px;
+    color: #fff;
+    background-color: #3498db;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+.button:active {
+    background-color: #1c5981;
+}
