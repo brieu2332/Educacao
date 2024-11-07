@@ -1,0 +1,44 @@
+
+body {
+    /* margin: 0;
+    padding: 0; */
+    background: url('/web/lib/aquarelle.jpeg') 
+    no-repeat center center fixed;
+    background-size: cover;
+}
+
+Canvas {
+    border: 2px solid gray; /* Borda preta */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+    background-color: #fff; /* Fundo branco */
+}
+
+iframe{
+    color: aliceblue;
+}
+
+h2{
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+
+}
+
+p{
+    color: white;
+}
+
+ul{
+    color: white;
+}
+
+ol{
+    color: white;
+}
+
+a{
+    color:mediumslateblue
+}
