@@ -26,8 +26,8 @@ function mouseSobreBotao(xMouse, yMouse, x, y, width, height) {
 
 // Definições dos botões
 const botoes = [
-    { x: 250, y: 300, width: 150, height: 50, texto: 'Voltar', corBotao: 'orange', link: '/amorin/index.html' },
-    { x: 450, y: 300, width: 150, height: 50, texto: 'Continuar', corBotao: 'green', link: '/Teste JS/index.html' },
+    { x: 250, y: 300, width: 150, height: 50, texto: 'Voltar', corBotao: 'orange', link: '/project/public/index.html' },
+    { x: 450, y: 300, width: 150, height: 50, texto: 'Continuar', corBotao: 'green', link: '/project/public/game.html' },
     { x: 350, y: 400, width: 150, height: 50, texto: 'Regras', corBotao: 'purple', link: '/regras.html' }
 ];
 
