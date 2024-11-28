@@ -10,11 +10,14 @@ function update(currentTime) {
     draw();
 
     slotsUpdate(deltaTime);
-    
+
+    if (cards.length <= 0) {
+        handleGameEnd();
+    }
+
     // Solicita o próximo frame para continuar a atualização
     requestAnimationFrame(update);
-}
-
+};
 
 // Sequência de início do jogo
 function gameStartSequence() {
@@ -43,28 +46,34 @@ function gameStartSequence() {
         slots.push(newSlot);
     }
 
+    cards = shuffle(cards);
+
     // Inicializa o loop de atualização do canvas
     update();
-
 };
 
 // Randomizar array
 function shuffle(array) {
-    let aux;
-
-    // Loop para embaralhar o array
-    for (let i = 0; i < array.length; i++) {
-        let randIndex = Math.random() * (array.length - 1);
-        aux = currentCards[i];
-        currentCards[i] = currentCards[randIndex];
-        currentCards[randIndex] = aux;
+    for (let i = array.length - 1; i > 0; i--) {
+        let randIndex = Math.floor(Math.random() * (i + 1));
+        [array[i], array[randIndex]] = [array[randIndex], array[i]];
     }
     return array;
-};
+}
+
+function handleGameStart() {
+    botoes.splice(0, botoes.length);
+    gameStartSequence();
+}
+
+function handleGameEnd() {
+    slots.length = 0;
+    currentCards.length = 0;
+    currentSlots.length = 0;
+    criarBotoes();
+    desenharBotoes();
+}
 
 // Permite que o canvas receba foco e possa capturar eventos de teclado
 canvas.tabIndex = 1000; 
 canvas.focus();
-
-// Sequência de início
-gameStartSequence();

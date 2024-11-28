@@ -1,12 +1,16 @@
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
-
 // Configurações dos botões
-const botoes = [
-    { x: 325, y: 150, width: 150, height: 50, texto: 'Continuar', corBotao: '#FF5733', hoverCor: '#C70039', link: '/public/game.html' },
-    { x: 325, y: 250, width: 150, height: 50, texto: 'Regras', corBotao: '#28A745', hoverCor: '#1E7E34', link: '/public/index.html' },
-    { x: 325, y: 350, width: 150, height: 50, texto: 'Voltar', corBotao: '#6C757D', hoverCor: '#495057', link: '/public/index.html' }
-];
+const botoes = [];
+
+function criarBotoes() {
+    let targetX = (canvas.width / 2) - 75;
+    let targetY = (canvas.height / 2) - 100;
+
+    botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Jogar', cor: '#FF5733', corBotao: '#C70039', hoverCor: '#FF5733', action: () => {handleGameStart();}});
+    targetY += 75;
+    botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Regras', cor: '#28A745', corBotao: '#1E7E34', hoverCor: '#28A745', action: () => { window.location.href = '/public/index.html'; }})
+    targetY += 75;
+    botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Voltar', cor: '#6C757D', corBotao: '#495057', hoverCor: '#6C757D', action: () => { window.location.href = '/public/index.html';}})
+}
 
 // Função para desenhar um botão com bordas arredondadas
 function desenharBotao(botao) {
@@ -25,7 +29,7 @@ function desenharBotao(botao) {
     ctx.closePath();
 
     // Aplica a cor do botão
-    ctx.fillStyle = botao.corBotao;
+    ctx.fillStyle = botao.cor;
     ctx.fill();
 
     // Desenha o texto
@@ -53,21 +57,9 @@ function desenharBotoes() {
 }
 
 // Evento para detectar movimento do mouse e aplicar efeito de hover
-canvas.addEventListener('mousemove', function (event) {
-    const rect = canvas.getBoundingClientRect();
-    const xMouse = event.clientX - rect.left;
-    const yMouse = event.clientY - rect.top;
-
-    botoes.forEach(botao => {
-        if (mouseSobreBotao(xMouse, yMouse, botao)) {
-            botao.corBotao = botao.hoverCor; // Altera para a cor de hover
-            botao.width = 170;              // Aumenta a largura
-            botao.height = 60;              // Aumenta a altura
-        } else {
-            botao.corBotao = botao.corBotaoOriginal || botao.corBotao; // Restaura a cor original
-            botao.width = 150;              // Largura padrão
-            botao.height = 50;              // Altura padrão
-        }
+canvas.addEventListener('mousemove', () => {
+    botoes.forEach((botao) => {
+        botao.cor = isColliding(mouseX, mouseY, botao) ? botao.corBotao : botao.hoverCor;
     });
 
     desenharBotoes(); // Redesenha os botões
@@ -81,7 +73,7 @@ canvas.addEventListener('click', function (event) {
 
     botoes.forEach(botao => {
         if (mouseSobreBotao(xMouse, yMouse, botao)) {
-            window.location.href = botao.link; // Redireciona para o link do botão
+            botao.action();
         }
     });
 });
@@ -90,4 +82,6 @@ canvas.addEventListener('click', function (event) {
 botoes.forEach(botao => {
     botao.corBotaoOriginal = botao.corBotao; // Salva a cor original
 });
+
+criarBotoes();
 desenharBotoes();

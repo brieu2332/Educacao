@@ -4,20 +4,12 @@ html, body {
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  background-color: #7C6B66;
+  background-color: #4A00A0;
 }
 
 canvas {
   margin: auto;
   display: block;
   border: 2px solid black;
-  background-color: #e2d1a0;
-}
-
-p {
-  margin: auto;
-  margin-top: 5px;
-  text-align: center;
-  font-size: small;
-  color: #bebebe;
+  background-color: #FEFFEE;
 }

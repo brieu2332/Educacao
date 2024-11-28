@@ -3,7 +3,7 @@
     let mouseX = -1;
     let mouseY = -1;
 
-    const cards = [];
+    let cards = [];
     const cardWidth = 200;
     const cardHeight = 200;
     let draggedCard = null;
@@ -14,7 +14,7 @@
         "EMA", "PATO", "MÃO", "ASA", "COLA", "OLHO", "VELA", "SOL", "LINHA"
     ];
     
-    const slots = [];
+    let slots = [];
     const slotWidth = 200;
     const slotHeight = 200;
     // Palavras dos slots (18)
@@ -24,7 +24,7 @@
     ];
     
     let loaderCounter = 0;
-    const loaderSpeed = Math.PI * (3/2);
+    const loaderSpeed = Math.PI * 4;
 
 //#endregion
 
@@ -140,7 +140,7 @@
             1.5 * Math.PI + slot.loaderCounter
         );
         
-        ctx.strokeStyle = '#FDFEFE';
+        ctx.strokeStyle = '#000000';
         ctx.lineWidth = 10;
         ctx.stroke();
         
@@ -242,7 +242,6 @@
         let sword = slot.word;
         let cword = card.word;
         let j = 0;
-    
         for (let i = 0; i < sword.length; i++) {
             if (sword[i] === cword[j]) {
                 j++;
@@ -250,12 +249,15 @@
                     return true;
                 }
             } else {
+                if (j > 0) {
+                    i -= j;
+                }
                 j = 0;
             }
         }
-    
         return false;
-    };
+    }
+    
 
 //#endregion
 
