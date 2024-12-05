@@ -1,5 +1,5 @@
-# Caça Palavras
-🔗 [Link de acesso](https://ifc-teste.web.app/)
+# Caça Palavras <br>
+🔗 [Link de acesso](https://ifc-teste.web.app/) <br>
 Projeto desenvolvido por André Vitor Bastos, Gabriel Rodrigues e Rhuan Amorin para disciplina Computação na Educação.
 
 ## Sobre
