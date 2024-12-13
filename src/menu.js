@@ -7,9 +7,9 @@ function criarBotoes() {
 
     botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Jogar', cor: '#FF5733', corBotao: '#C70039', hoverCor: '#FF5733', action: () => {handleGameStart();}});
     targetY += 75;
-    botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Regras', cor: '#28A745', corBotao: '#1E7E34', hoverCor: '#28A745', action: () => { window.location.href = '/public/index.html'; }})
+    botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Regras', cor: '#28A745', corBotao: '#1E7E34', hoverCor: '#28A745', action: () => { window.location.href = '../public/game.html#regras'; }})
     targetY += 75;
-    botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Voltar', cor: '#6C757D', corBotao: '#495057', hoverCor: '#6C757D', action: () => { window.location.href = '/public/index.html';}})
+    botoes.push({ x: targetX, y: targetY, width: 150, height: 50, texto: 'Voltar', cor: '#6C757D', corBotao: '#495057', hoverCor: '#6C757D', action: () => { window.location.href = '../public/index.html';}})
 }
 
 // Função para desenhar um botão com bordas arredondadas
