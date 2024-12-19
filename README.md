@@ -8,7 +8,7 @@
 ## 📖 Sobre o Projeto
 O **Caça Palavras** é um jogo infantil de conexão sintática de palavras. O objetivo é procurar e conectar corretamente as cartas, completando as palavras de maneira lógica e divertida.  
 
-O projeto foi desenvolvido para a disciplina **Computação na Educação**, promovendo um aprendizado lúdico e interativo para crianças.  
+O projeto foi desenvolvido para a disciplina **Computação na Educação** do curso de Ciência da Computação do Instituto Federal Catarinense, promovendo um aprendizado lúdico e interativo para crianças.  
 
 ---
 
