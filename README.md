@@ -1,8 +1,7 @@
 # 🧩 Caça Palavras
 
 ## 🔗 Link de Acesso
-[**Acesse o Jogo Caça Palavras aqui**]([#](https://ifc-teste.web.app/index.html))  
-*(Substitua "#" pelo link de acesso ao site)*
+[**Acesse o Jogo Caça Palavras aqui**]([https://ifc-teste.web.app/index.html])  
 
 ---
 
