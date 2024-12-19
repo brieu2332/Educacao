@@ -1,7 +1,7 @@
 # 🧩 Caça Palavras
 
 ## 🔗 Link de Acesso
-[**Acesse o Jogo Caça Palavras aqui**](https://ifc-teste.web.app/index.html){:target="_blamk"}
+[**Acesse o Jogo Caça Palavras aqui**](https://ifc-teste.web.app/index.html)
 
 ---
 
